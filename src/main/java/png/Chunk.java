@@ -15,7 +15,7 @@ public class Chunk {
 
     private Chunk(ByteBuffer buffer) {
         if (buffer.order() != ByteOrder.BIG_ENDIAN) {
-            throw new IllegalArgumentException("Order for chunk should be:" + ByteOrder.LITTLE_ENDIAN + " but was " + ByteOrder.BIG_ENDIAN);
+            throw new IllegalArgumentException("Order for chunk should be:" + ByteOrder.BIG_ENDIAN + " but was " + buffer.order());
         }
         if (buffer.remaining() < DATA_LENGTH_SIZE + TYPE_SIZE + CRC_SIZE) {
             throw new IllegalArgumentException("Not enough remaining data on buffer. Expected at least " + DATA_LENGTH_SIZE + TYPE_SIZE + CRC_SIZE
