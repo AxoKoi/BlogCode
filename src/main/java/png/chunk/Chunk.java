@@ -1,4 +1,4 @@
-package png;
+package png.chunk;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;

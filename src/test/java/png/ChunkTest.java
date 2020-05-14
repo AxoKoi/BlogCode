@@ -4,8 +4,9 @@ import org.apache.commons.codec.DecoderException;
 import org.junit.Assert;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
 import org.apache.commons.codec.binary.Hex;
+import png.chunk.Chunk;
+
 public class ChunkTest {
 
     @Test
