@@ -2,18 +2,20 @@ package png.chunk;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
+import java.util.Arrays;
 
-public class Chunk {
-    private static final int DATA_LENGTH_SIZE = 0x04;
-    private static final int TYPE_SIZE = 0x04;
+public abstract class Chunk {
+    static final int DATA_LENGTH_SIZE = 0x04;
+    static final int TYPE_SIZE = 0x04;
     private static final int CRC_SIZE = 0x04;
 
     private final int dataLength;
-    private final byte[] type = new byte[TYPE_SIZE];
-    private final byte[] data;
+    private final byte[] rawType = new byte[TYPE_SIZE];
+    final byte[] data;
     private final byte[] crc = new byte[CRC_SIZE];
+    private final AllowedChunkTypes type;
 
-    private Chunk(ByteBuffer buffer) {
+    Chunk(ByteBuffer buffer) {
         if (buffer.order() != ByteOrder.BIG_ENDIAN) {
             throw new IllegalArgumentException("Order for chunk should be:" + ByteOrder.BIG_ENDIAN + " but was " + buffer.order());
         }
@@ -28,28 +30,27 @@ public class Chunk {
                     + " but was " + buffer.remaining());
         }
 
-        buffer.get(type, 0, TYPE_SIZE);
+        buffer.get(rawType, 0, TYPE_SIZE);
+
+        this.type = AllowedChunkTypes.fromBytes(rawType)
+                .orElseThrow(() -> new IllegalArgumentException("Unsupported chunk type:" + Arrays.toString(rawType)));
+
         data = new byte[dataLength];
         buffer.get(data, 0, dataLength);
         buffer.get(crc, 0, CRC_SIZE);
-    }
-
-    public static Chunk parse(byte[] rawChunk) {
-        return parse(ByteBuffer.wrap(rawChunk));
-    }
-
-    public static Chunk parse(ByteBuffer buffer) {
-        return new Chunk(buffer);
     }
 
     public byte[] bytes() {
         ByteBuffer buffer = ByteBuffer.allocate(DATA_LENGTH_SIZE + TYPE_SIZE + dataLength + CRC_SIZE);
         buffer.order(ByteOrder.BIG_ENDIAN);
         buffer.putInt(dataLength);
-        buffer.put(type);
+        buffer.put(rawType);
         buffer.put(data);
         buffer.put(crc);
         return buffer.array();
     }
 
+    public AllowedChunkTypes getType() {
+        return type;
+    }
 }

@@ -40,9 +40,15 @@ public enum AllowedChunkTypes {
         return this.name.getBytes(StandardCharsets.US_ASCII);
     }
 
-    public Optional<AllowedChunkTypes> fromName(String name) {
+    public static Optional<AllowedChunkTypes> fromName(String name) {
         return Arrays.stream(AllowedChunkTypes.values())
                 .filter(x -> x.getName().equals(name))
+                .findFirst();
+    }
+
+    public static Optional<AllowedChunkTypes> fromBytes(byte[] rawName) {
+        return Arrays.stream(AllowedChunkTypes.values())
+                .filter(x -> Arrays.equals(x.bytes(),rawName))
                 .findFirst();
     }
 }
