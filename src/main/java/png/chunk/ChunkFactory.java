@@ -44,7 +44,7 @@ public final class ChunkFactory {
             case iTXt:
             case tEXt:
             case zTXT:
-                throw new UnsupportedOperationException("Chunk not yet supported.");
+                return new DefaultChunk(buffer);
 
             default:
                 throw new UnsupportedOperationException("Unsupported chunk to be created:" + type);
