@@ -1,2 +1,6 @@
-# blogCode
-This is going to be the repository for all the code done for the blog.
+# Blog Code
+
+Acá encontrarán todo el código del blog de axokoi.com
+
+Here you'll find all the code from the blog axokoi.com
+
