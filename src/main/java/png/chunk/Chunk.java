@@ -4,10 +4,13 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.util.Arrays;
 
+/**
+ * Chunks must be immutables. Please ensure that it's the case when extending Chunk. Otherwise, it will break the library!
+ */
 public abstract class Chunk {
     static final int DATA_LENGTH_SIZE = 0x04;
     static final int TYPE_SIZE = 0x04;
-    private static final int CRC_SIZE = 0x04;
+    static final int CRC_SIZE = 0x04;
 
     private final int dataLength;
     private final byte[] rawType = new byte[TYPE_SIZE];
@@ -48,6 +51,10 @@ public abstract class Chunk {
         buffer.put(data);
         buffer.put(crc);
         return buffer.array();
+    }
+
+    public int size() {
+        return DATA_LENGTH_SIZE + TYPE_SIZE + dataLength + CRC_SIZE;
     }
 
     public AllowedChunkTypes getType() {

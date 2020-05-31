@@ -1,0 +1,37 @@
+package png;
+
+import org.junit.Assert;
+import org.junit.Test;
+import png.chunk.AllowedChunkTypes;
+import png.chunk.Chunk;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class PngFileTest {
+    private static final Path TEST_IMAGE_PATH = Paths.get("src", "test", "resources", "png", "the-cup.png");
+
+    @Test
+    public void parse() throws PngFileException, IOException {
+
+        byte[] rawPng = Files.readAllBytes(TEST_IMAGE_PATH);
+        PngFile pngFile = PngFile.parse(rawPng);
+        Assert.assertArrayEquals(rawPng, pngFile.asBytes());
+    }
+
+    @Test
+    public void contains() throws IOException, PngFileException {
+        byte[] rawPng = Files.readAllBytes(TEST_IMAGE_PATH);
+        PngFile pngFile = PngFile.parse(rawPng);
+        List<Chunk> chunks = pngFile.getChunks();
+        List<AllowedChunkTypes> types = chunks.stream().map(Chunk::getType).collect(Collectors.toList());
+
+        Assert.assertTrue(types.contains(AllowedChunkTypes.IHDR));
+        Assert.assertTrue(types.contains(AllowedChunkTypes.IDAT));
+        Assert.assertTrue(types.contains(AllowedChunkTypes.IEND));
+    }
+}

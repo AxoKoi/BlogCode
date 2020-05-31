@@ -10,8 +10,12 @@ public final class ChunkFactory {
     }
 
     public static Chunk parse(ByteBuffer buffer) {
+        if (buffer.remaining() < Chunk.DATA_LENGTH_SIZE + Chunk.TYPE_SIZE + Chunk.CRC_SIZE) {
+            throw new IllegalArgumentException("Not enough remaining data on buffer. Needed at least:"
+                    + Chunk.DATA_LENGTH_SIZE + Chunk.TYPE_SIZE + Chunk.CRC_SIZE + " bytes");
+        }
         buffer.mark();
-        buffer.position(Chunk.DATA_LENGTH_SIZE);
+        buffer.position(buffer.position() + Chunk.DATA_LENGTH_SIZE);
 
         byte[] rawType = new byte[Chunk.TYPE_SIZE];
         buffer.get(rawType, 0, Chunk.TYPE_SIZE);
@@ -30,6 +34,7 @@ public final class ChunkFactory {
             case PLTE:
             case IDAT:
             case IEND:
+                return new IENDChunk(buffer);
             case cHRM:
             case gAMA:
             case iCCP:
