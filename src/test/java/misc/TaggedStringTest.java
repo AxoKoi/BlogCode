@@ -1,4 +1,4 @@
-package filestructures;
+package misc;
 
 
 import org.junit.Assert;
