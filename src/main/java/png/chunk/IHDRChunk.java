@@ -11,7 +11,7 @@ public final class IHDRChunk extends Chunk {
     private final byte compressionMethod;
     private final byte filterMethod;
     private final byte interlaceMethod;
-
+//todo The sample depth is the same as the bit depth except in the case of indexed-colour PNG images (colour type 3), in which the sample depth is always 8 bits
     IHDRChunk(ByteBuffer buffer) {
         super(buffer);
         ByteBuffer dataBuffer = ByteBuffer.allocate(data.length);
