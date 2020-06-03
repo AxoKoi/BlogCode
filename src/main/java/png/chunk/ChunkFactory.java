@@ -1,5 +1,7 @@
 package png.chunk;
 
+import png.chunk.validators.ChunkValidatorFacade;
+
 import java.nio.ByteBuffer;
 import java.util.Arrays;
 
@@ -9,7 +11,7 @@ public final class ChunkFactory {
         throw new UnsupportedOperationException("Chunk Factory doesn't need to be instantiated");
     }
 
-    public static Chunk parse(ByteBuffer buffer) {
+    public static Chunk parse(ByteBuffer buffer) throws IllegalChunkException {
         if (buffer.remaining() < Chunk.DATA_LENGTH_SIZE + Chunk.TYPE_SIZE + Chunk.CRC_SIZE) {
             throw new IllegalArgumentException("Not enough remaining data on buffer. Needed at least:"
                     + Chunk.DATA_LENGTH_SIZE + Chunk.TYPE_SIZE + Chunk.CRC_SIZE + " bytes");
@@ -24,7 +26,12 @@ public final class ChunkFactory {
         AllowedChunkTypes type = AllowedChunkTypes.fromBytes(rawType)
                 .orElseThrow(() -> new IllegalArgumentException("Unknown chunk type: " + Arrays.toString(rawType)));
 
-        return createChunk(buffer, type);
+        Chunk newChunk = createChunk(buffer, type);
+        if (ChunkValidatorFacade.validate(newChunk)) {
+            return newChunk;
+        } else {
+            throw new IllegalChunkException("The given chunk was not validated", newChunk);
+        }
     }
 
     private static Chunk createChunk(ByteBuffer buffer, AllowedChunkTypes type) {

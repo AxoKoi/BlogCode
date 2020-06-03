@@ -5,6 +5,7 @@ import org.apache.commons.codec.binary.Hex;
 import png.chunk.AllowedChunkTypes;
 import png.chunk.Chunk;
 import png.chunk.ChunkFactory;
+import png.chunk.IllegalChunkException;
 
 import java.nio.ByteBuffer;
 import java.util.LinkedList;
@@ -35,8 +36,12 @@ public class PngFile {
         }
     }
 
-    private Chunk readChunk(ByteBuffer buffer) {
-        return ChunkFactory.parse(buffer);
+    private Chunk readChunk(ByteBuffer buffer) throws PngFileException {
+        try {
+            return ChunkFactory.parse(buffer);
+        } catch (IllegalChunkException e) {
+            throw new PngFileException("Impossible to read the chunk.",e);
+        }
     }
 
     private void checkMagicNumber(ByteBuffer buffer) {

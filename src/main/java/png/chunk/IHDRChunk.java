@@ -1,6 +1,7 @@
 package png.chunk;
 
 import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 
 public final class IHDRChunk extends Chunk {
 
@@ -31,16 +32,12 @@ public final class IHDRChunk extends Chunk {
         interlaceMethod = dataBuffer.get();
     }
 
-    public byte[] getWidth() {
-        byte[] widthToReturn = new byte[0x04];
-        System.arraycopy(width, 0, widthToReturn, 0, 0x04);
-        return widthToReturn;
+    public int getWidth() {
+        return ByteBuffer.wrap(width).order(ByteOrder.BIG_ENDIAN).getInt();
     }
 
-    public byte[] getHeight() {
-        byte[] heightToReturn = new byte[0x04];
-        System.arraycopy(height, 0, heightToReturn, 0, 0x04);
-        return heightToReturn;
+    public int getHeight() {
+        return ByteBuffer.wrap(height).order(ByteOrder.BIG_ENDIAN).getInt();
     }
 
     public byte getBitDepth() {
