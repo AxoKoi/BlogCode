@@ -5,6 +5,7 @@ For more information, visit www.axokoi.com or www.github.com/axokoi
 package png.chunk;
 
 import java.nio.ByteBuffer;
+import java.util.Arrays;
 
 /**
  * The four-byte chunk type field contains the decimal values
@@ -16,4 +17,11 @@ public class IDATChunk extends Chunk {
     IDATChunk(ByteBuffer buffer) {
         super(buffer);
     }
+
+    //toString method for IDATChunk class
+	public String toString() {
+		return "IDATChunk [data=" + Arrays.toString(data) + ", bytes()=" + Arrays.toString(bytes()) + ", size()="
+				+ size() + ", getType()=" + getType() + ", toString()=" + super.toString() + ", getClass()="
+				+ getClass() + ", hashCode()=" + hashCode() + "]";
+	}
 }

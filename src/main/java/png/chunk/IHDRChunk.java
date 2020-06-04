@@ -6,6 +6,7 @@ package png.chunk;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
+import java.util.Arrays;
 
 public final class IHDRChunk extends Chunk {
 
@@ -63,4 +64,11 @@ public final class IHDRChunk extends Chunk {
     public byte getInterlaceMethod() {
         return interlaceMethod;
     }
+
+    //toString method for IHDRChunk Class
+	public String toString() {
+		return "IHDRChunk [width=" + Arrays.toString(width) + ", height=" + Arrays.toString(height) + ", bitDepth="
+				+ bitDepth + ", colourType=" + colourType + ", compressionMethod=" + compressionMethod
+				+ ", filterMethod=" + filterMethod + ", interlaceMethod=" + interlaceMethod + "]";
+	}
 }
