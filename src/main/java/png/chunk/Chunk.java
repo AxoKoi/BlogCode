@@ -1,3 +1,7 @@
+/*
+This is a file belonging to an axokoi project. The source code has been released under a MPL 2.0 license.
+For more information, visit www.axokoi.com or www.github.com/axokoi
+*/
 package png.chunk;
 
 import java.nio.ByteBuffer;
@@ -5,7 +9,7 @@ import java.nio.ByteOrder;
 import java.util.Arrays;
 
 /**
- * Chunks must be immutables. Please ensure that it's the case when extending Chunk. Otherwise, it will break the library!
+ * Chunks must be immutable. Please ensure that it's the case when extending Chunk. Otherwise, it will break the library!
  */
 public abstract class Chunk {
     static final int DATA_LENGTH_SIZE = 0x04;
