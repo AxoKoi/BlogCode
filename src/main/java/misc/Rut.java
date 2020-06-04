@@ -3,6 +3,7 @@ package misc;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 
 public class Rut {
     enum VerificationDigit {
@@ -18,8 +19,8 @@ public class Rut {
         TEN(10, "K"),
         ELEVEN(11, "0");
 
-        final int numericalValue;
-        final String stringValue;
+        private final int numericalValue;
+        private final String stringValue;
 
         VerificationDigit(int numericalValue, String stringValue) {
             this.numericalValue = numericalValue;
@@ -80,5 +81,19 @@ public class Rut {
 
     public VerificationDigit getVerificationDigit() {
         return verificationDigit;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Rut rut = (Rut) o;
+        return value == rut.value &&
+                verificationDigit == rut.verificationDigit;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value, verificationDigit);
     }
 }
