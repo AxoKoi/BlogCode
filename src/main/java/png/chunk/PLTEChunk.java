@@ -1,7 +1,7 @@
 /*
 This is a file belonging to an axokoi project. The source code has been released under a MPL 2.0 license.
 For more information, visit www.axokoi.com or www.github.com/axokoi
-*/
+ */
 package png.chunk;
 
 import java.nio.ByteBuffer;
@@ -31,69 +31,69 @@ import java.util.List;
  */
 
 public class PLTEChunk extends Chunk {
-    private static final int PALETTE_ENTRY_SIZE = 3;
-    List<RGB> paletteEntries;
+	private static final int PALETTE_ENTRY_SIZE = 3;
+	List<RGB> paletteEntries;
 
-    PLTEChunk(ByteBuffer buffer) {
-        super(buffer);
-        paletteEntries = new LinkedList<>();
-        if (isValidNumberOfEntries()) {
-            throw new IllegalArgumentException("Wrong number of entries. Expected between 1 to 256 but was: "
-                    + 1.0 * super.data.length / PALETTE_ENTRY_SIZE);
-        }
+	PLTEChunk(ByteBuffer buffer) {
+		super(buffer);
+		paletteEntries = new LinkedList<>();
+		if (isValidNumberOfEntries()) {
+			throw new IllegalArgumentException("Wrong number of entries. Expected between 1 to 256 but was: "
+					+ 1.0 * super.data.length / PALETTE_ENTRY_SIZE);
+		}
 
-        ByteBuffer dataBuffer = ByteBuffer.wrap(super.data);
-        do {
-            paletteEntries.add(new RGB(dataBuffer));
-        } while (dataBuffer.remaining() > 0);
-    }
+		ByteBuffer dataBuffer = ByteBuffer.wrap(super.data);
+		do {
+			paletteEntries.add(new RGB(dataBuffer));
+		} while (dataBuffer.remaining() > 0);
+	}
 
-    private boolean isValidNumberOfEntries() {
-        int remainder = super.data.length % PALETTE_ENTRY_SIZE;
-        if (remainder != 0) {
-            return false;
-        }
+	private boolean isValidNumberOfEntries() {
+		int remainder = super.data.length % PALETTE_ENTRY_SIZE;
+		if (remainder != 0) {
+			return false;
+		}
 
-        int numberOfEntries = super.data.length / PALETTE_ENTRY_SIZE;
-        return numberOfEntries != 0 && numberOfEntries <= 256;
-    }
+		int numberOfEntries = super.data.length / PALETTE_ENTRY_SIZE;
+		return numberOfEntries != 0 && numberOfEntries <= 256;
+	}
 
-    public List<RGB> getPaletteEntries() {
-        return List.copyOf(paletteEntries);
-    }
+	public List<RGB> getPaletteEntries() {
+		return List.copyOf(paletteEntries);
+	}
 
-    static class RGB {
-        private final byte red;
-        private final byte green;
-        private final byte blue;
+	static class RGB {
+		private final byte red;
+		private final byte green;
+		private final byte blue;
 
-        private RGB(ByteBuffer buffer) {
-            if (buffer.remaining() < PALETTE_ENTRY_SIZE) {
-                throw new IllegalArgumentException("Error when reading RGB parameters for PLTE Chunk. Remaining bytes should be at least 3 but was "
-                        + buffer.remaining());
-            }
-            red = buffer.get();
-            green = buffer.get();
-            blue = buffer.get();
-        }
+		private RGB(ByteBuffer buffer) {
+			if (buffer.remaining() < PALETTE_ENTRY_SIZE) {
+				throw new IllegalArgumentException("Error when reading RGB parameters for PLTE Chunk. Remaining bytes should be at least 3 but was "
+						+ buffer.remaining());
+			}
+			red = buffer.get();
+			green = buffer.get();
+			blue = buffer.get();
+		}
 
-        public byte getRed() {
-            return red;
-        }
+		public byte getRed() {
+			return red;
+		}
 
-        public byte getGreen() {
-            return green;
-        }
+		public byte getGreen() {
+			return green;
+		}
 
-        public byte getBlue() {
-            return blue;
-        }
-    }
+		public byte getBlue() {
+			return blue;
+		}
+	}
 
-    //toString method for PLTEChunk Class
+	//toString method for PLTEChunk Class
 	public String toString() {
 		return "PLTEChunk [paletteEntries=" + paletteEntries + "]";
 	}
-    
+
 }
 
