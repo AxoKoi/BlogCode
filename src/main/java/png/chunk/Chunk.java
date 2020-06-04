@@ -63,11 +63,12 @@ public abstract class Chunk {
 
 	public AllowedChunkTypes getType() {
 		return type;
-	}
+	}	
 
 	//toString method for Chunk class
 	public String toString() {
 		return "Chunk [dataLength=" + dataLength + ", rawType=" + Arrays.toString(rawType) + ", data="
-				+ Arrays.toString(data) + ", crc=" + Arrays.toString(crc) + ", type=" + type + "]";
+				+ Arrays.toString(data) + ", crc=" + Arrays.toString(crc) + ", type=" + type + ", bytes()="
+				+ Arrays.toString(bytes()) + ", size()=" + size() + ", getType()=" + getType() + "]";
 	}
 }

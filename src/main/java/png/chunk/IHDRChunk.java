@@ -69,6 +69,10 @@ public final class IHDRChunk extends Chunk {
 	public String toString() {
 		return "IHDRChunk [width=" + Arrays.toString(width) + ", height=" + Arrays.toString(height) + ", bitDepth="
 				+ bitDepth + ", colourType=" + colourType + ", compressionMethod=" + compressionMethod
-				+ ", filterMethod=" + filterMethod + ", interlaceMethod=" + interlaceMethod + "]";
+				+ ", filterMethod=" + filterMethod + ", interlaceMethod=" + interlaceMethod + ", getWidth()="
+				+ getWidth() + ", getHeight()=" + getHeight() + ", getBitDepth()=" + getBitDepth()
+				+ ", getColourType()=" + getColourType() + ", getCompressionMethod()=" + getCompressionMethod()
+				+ ", getFilterMethod()=" + getFilterMethod() + ", getInterlaceMethod()=" + getInterlaceMethod() + "]";
 	}
+
 }

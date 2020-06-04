@@ -92,7 +92,8 @@ public class PLTEChunk extends Chunk {
 
 	//toString method for PLTEChunk Class
 	public String toString() {
-		return "PLTEChunk [paletteEntries=" + paletteEntries + "]";
+		return "PLTEChunk [paletteEntries=" + paletteEntries + ", isValidNumberOfEntries()=" + isValidNumberOfEntries()
+		+ ", getPaletteEntries()=" + getPaletteEntries() + "]";
 	}
 
 }
