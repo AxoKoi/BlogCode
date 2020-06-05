@@ -65,7 +65,6 @@ public abstract class Chunk {
 		return type;
 	}	
 
-	//toString method for Chunk class
 	public String toString() {
 		return "Chunk [dataLength=" + dataLength + ", rawType=" + Arrays.toString(rawType) + ", data="
 				+ Arrays.toString(data) + ", crc=" + Arrays.toString(crc) + ", type=" + type + ", bytes()="
