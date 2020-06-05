@@ -65,9 +65,8 @@ public final class IHDRChunk extends Chunk {
 		return interlaceMethod;
 	}
 
-	//toString method for IHDRChunk Class
 	public String toString() {
-		return "IHDRChunk [width=" + Arrays.toString(width) + ", height=" + Arrays.toString(height) + ", bitDepth="
+		return "IHDRChunk [super.toString() = " + super.toString() + ", width=" + Arrays.toString(width) + ", height=" + Arrays.toString(height) + ", bitDepth="
 				+ bitDepth + ", colourType=" + colourType + ", compressionMethod=" + compressionMethod
 				+ ", filterMethod=" + filterMethod + ", interlaceMethod=" + interlaceMethod + ", getWidth()="
 				+ getWidth() + ", getHeight()=" + getHeight() + ", getBitDepth()=" + getBitDepth()
