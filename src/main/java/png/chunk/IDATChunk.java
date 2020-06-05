@@ -16,4 +16,8 @@ public class IDATChunk extends Chunk {
     IDATChunk(ByteBuffer buffer) {
         super(buffer);
     }
+    
+	public String toString() {
+		return "IDATChunk [ super.toString()=" + super.toString() +" ]";
+	}
 }

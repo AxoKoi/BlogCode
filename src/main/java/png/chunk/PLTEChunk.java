@@ -89,5 +89,9 @@ public class PLTEChunk extends Chunk {
             return blue;
         }
     }
+    
+	public String toString() {
+		return "PLTEChunk [paletteEntries=" + paletteEntries + ", isValidNumberOfEntries()=" + isValidNumberOfEntries()
+		+ ", getPaletteEntries()=" + getPaletteEntries() + "]";
+	}
 }
-
