@@ -4,7 +4,7 @@ For more information, visit www.axokoi.com or www.github.com/axokoi
 */
 package com.axokoi.png.chunk.validators;
 
-import png.chunk.Chunk;
+import com.axokoi.png.chunk.Chunk;
 
 public final class ChunkValidatorFacade {
 

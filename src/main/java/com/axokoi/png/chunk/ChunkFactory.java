@@ -4,7 +4,7 @@ For more information, visit www.axokoi.com or www.github.com/axokoi
 */
 package com.axokoi.png.chunk;
 
-import png.chunk.validators.ChunkValidatorFacade;
+import com.axokoi.png.chunk.validators.ChunkValidatorFacade;
 
 import java.nio.ByteBuffer;
 import java.util.Arrays;

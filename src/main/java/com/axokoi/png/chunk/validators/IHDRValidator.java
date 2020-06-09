@@ -4,9 +4,9 @@ For more information, visit www.axokoi.com or www.github.com/axokoi
 */
 package com.axokoi.png.chunk.validators;
 
-import png.chunk.AllowedChunkTypes;
-import png.chunk.Chunk;
-import png.chunk.IHDRChunk;
+import com.axokoi.png.chunk.Chunk;
+import com.axokoi.png.chunk.IHDRChunk;
+import com.axokoi.png.chunk.AllowedChunkTypes;
 
 public final class IHDRValidator {
 
