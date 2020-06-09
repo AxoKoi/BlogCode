@@ -10,4 +10,8 @@ public class IENDChunk extends Chunk {
     IENDChunk(ByteBuffer buffer) {
         super(buffer);
     }
+    
+	public String toString() {
+		return "IENDChunk [ super.toString()=" + super.toString() +" ]";
+	}
 }

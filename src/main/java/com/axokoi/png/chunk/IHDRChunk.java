@@ -6,6 +6,7 @@ package com.axokoi.png.chunk;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
+import java.util.Arrays;
 
 public final class IHDRChunk extends Chunk {
 
@@ -63,4 +64,13 @@ public final class IHDRChunk extends Chunk {
     public byte getInterlaceMethod() {
         return interlaceMethod;
     }
+    
+	public String toString() {
+		return "IHDRChunk [super.toString() = " + super.toString() + ", width=" + Arrays.toString(width) + ", height=" + Arrays.toString(height) + ", bitDepth="
+				+ bitDepth + ", colourType=" + colourType + ", compressionMethod=" + compressionMethod
+				+ ", filterMethod=" + filterMethod + ", interlaceMethod=" + interlaceMethod + ", getWidth()="
+				+ getWidth() + ", getHeight()=" + getHeight() + ", getBitDepth()=" + getBitDepth()
+				+ ", getColourType()=" + getColourType() + ", getCompressionMethod()=" + getCompressionMethod()
+				+ ", getFilterMethod()=" + getFilterMethod() + ", getInterlaceMethod()=" + getInterlaceMethod() + "]";
+	}
 }
