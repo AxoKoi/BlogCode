@@ -3,7 +3,7 @@ This is a file belonging to an axokoi project. The source code has been released
 For more information, visit www.axokoi.com or www.github.com/axokoi
 */
 
-package png.chunk;
+package com.axokoi.png.chunk;
 
 public class IllegalChunkException extends Exception {
 

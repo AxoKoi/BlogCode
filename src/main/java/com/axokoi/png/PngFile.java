@@ -2,14 +2,14 @@
 This is a file belonging to an axokoi project. The source code has been released under a MPL 2.0 license.
 For more information, visit www.axokoi.com or www.github.com/axokoi
 */
-package png;
+package com.axokoi.png;
 
 import org.apache.commons.codec.DecoderException;
 import org.apache.commons.codec.binary.Hex;
-import png.chunk.AllowedChunkTypes;
-import png.chunk.Chunk;
-import png.chunk.ChunkFactory;
-import png.chunk.IllegalChunkException;
+import com.axokoi.png.chunk.AllowedChunkTypes;
+import com.axokoi.png.chunk.Chunk;
+import com.axokoi.png.chunk.ChunkFactory;
+import com.axokoi.png.chunk.IllegalChunkException;
 
 import java.nio.ByteBuffer;
 import java.util.LinkedList;

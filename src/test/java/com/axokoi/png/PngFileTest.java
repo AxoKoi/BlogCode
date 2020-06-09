@@ -2,12 +2,12 @@
 This is a file belonging to an axokoi project. The source code has been released under a MPL 2.0 license.
 For more information, visit www.axokoi.com or www.github.com/axokoi
 */
-package png;
+package com.axokoi.png;
 
 import org.junit.Assert;
 import org.junit.Test;
-import png.chunk.AllowedChunkTypes;
-import png.chunk.Chunk;
+import com.axokoi.png.chunk.AllowedChunkTypes;
+import com.axokoi.png.chunk.Chunk;
 
 import java.io.IOException;
 import java.nio.file.Files;

@@ -1,4 +1,4 @@
-package misc;
+package com.axokoi.misc;
 
 
 import java.io.UnsupportedEncodingException;
