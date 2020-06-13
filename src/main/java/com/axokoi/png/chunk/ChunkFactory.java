@@ -43,7 +43,9 @@ public final class ChunkFactory {
             case IHDR:
                 return new IHDRChunk(buffer);
             case PLTE:
+                return new PLTEChunk(buffer);
             case IDAT:
+                return new IDATChunk(buffer);
             case IEND:
                 return new IENDChunk(buffer);
             case cHRM:
@@ -53,7 +55,9 @@ public final class ChunkFactory {
             case sRGB:
             case bKGD:
             case hIST:
+                return new DefaultChunk(buffer);
             case tRNS:
+                return new TRNSChunk(buffer);
             case pHYs:
             case sPLT:
             case tIME:

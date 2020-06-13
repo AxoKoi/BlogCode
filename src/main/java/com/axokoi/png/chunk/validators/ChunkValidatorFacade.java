@@ -8,17 +8,23 @@ import com.axokoi.png.chunk.Chunk;
 
 public final class ChunkValidatorFacade {
 
-    private ChunkValidatorFacade(){
+    private ChunkValidatorFacade() {
         throw new UnsupportedOperationException("ChunkValidatorFacade shouldn't be instantiated");
     }
 
     public static boolean validate(Chunk chunk) {
+        if (!CrcValidator.validate(chunk)) {
+            return false;
+        }
         switch (chunk.getType()) {
             case IHDR:
                 return IHDRValidator.validate(chunk);
             case PLTE:
+                return PLTEValidator.validate(chunk);
             case IDAT:
+                return IDATValidator.validate(chunk);
             case IEND:
+                return IENDValidator.validate(chunk);
             case cHRM:
             case gAMA:
             case iCCP:
@@ -26,7 +32,9 @@ public final class ChunkValidatorFacade {
             case sRGB:
             case bKGD:
             case hIST:
+                return true;
             case tRNS:
+                return TRNSValidator.validate(chunk);
             case pHYs:
             case sPLT:
             case tIME:

@@ -4,13 +4,13 @@ For more information, visit www.axokoi.com or www.github.com/axokoi
 */
 package com.axokoi.png.chunk.validators;
 
+import com.axokoi.png.chunk.AllowedChunkTypes;
 import com.axokoi.png.chunk.Chunk;
 import com.axokoi.png.chunk.IHDRChunk;
-import com.axokoi.png.chunk.AllowedChunkTypes;
 
-public final class IHDRValidator {
+final class IHDRValidator {
 
-    private IHDRValidator(){
+    private IHDRValidator() {
         throw new UnsupportedOperationException("IHDRValidator shouldn't be instantiated");
     }
 

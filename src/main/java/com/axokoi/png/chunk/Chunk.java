@@ -47,7 +47,11 @@ public abstract class Chunk {
         buffer.get(crc, 0, CRC_SIZE);
     }
 
-    public byte[] bytes() {
+    public final byte[] getCRC() {
+        return ByteBuffer.allocate(CRC_SIZE).put(this.crc).array();
+    }
+
+    public final byte[] bytes() {
         ByteBuffer buffer = ByteBuffer.allocate(DATA_LENGTH_SIZE + TYPE_SIZE + dataLength + CRC_SIZE);
         buffer.order(ByteOrder.BIG_ENDIAN);
         buffer.putInt(dataLength);
@@ -64,10 +68,16 @@ public abstract class Chunk {
     public AllowedChunkTypes getType() {
         return type;
     }
-    
-	public String toString() {
-		return "Chunk [dataLength=" + dataLength + ", rawType=" + Arrays.toString(rawType) + ", data="
-				+ Arrays.toString(data) + ", crc=" + Arrays.toString(crc) + ", type=" + type + ", bytes()="
-				+ Arrays.toString(bytes()) + ", size()=" + size() + ", getType()=" + getType() + "]";
-	}
+
+    public String toString() {
+        return "Chunk [dataLength=" + dataLength + ", rawType=" + Arrays.toString(rawType) + ", data="
+                + Arrays.toString(data) + ", crc=" + Arrays.toString(crc) + ", type=" + type + ", bytes()="
+                + Arrays.toString(bytes()) + ", size()=" + size() + ", getType()=" + getType() + "]";
+    }
+
+    public byte[] getDataToVerify() {
+        return ByteBuffer.allocate(TYPE_SIZE + dataLength)
+                .put(this.type.bytes())
+                .put(this.data).array();
+    }
 }
