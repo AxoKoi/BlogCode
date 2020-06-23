@@ -4,12 +4,12 @@ For more information, visit www.axokoi.com or www.github.com/axokoi
 */
 package com.axokoi.png;
 
-import org.apache.commons.codec.DecoderException;
-import org.apache.commons.codec.binary.Hex;
 import com.axokoi.png.chunk.AllowedChunkTypes;
 import com.axokoi.png.chunk.Chunk;
 import com.axokoi.png.chunk.ChunkFactory;
 import com.axokoi.png.chunk.IllegalChunkException;
+import org.apache.commons.codec.DecoderException;
+import org.apache.commons.codec.binary.Hex;
 
 import java.nio.ByteBuffer;
 import java.util.LinkedList;
@@ -44,7 +44,7 @@ public class PngFile {
         try {
             return ChunkFactory.parse(buffer);
         } catch (IllegalChunkException e) {
-            throw new PngFileException("Impossible to read the chunk.",e);
+            throw new PngFileException("Impossible to read the chunk.", e);
         }
     }
 
@@ -64,10 +64,6 @@ public class PngFile {
         buffer.get(rawString, 0, MAGIC_NUMBER_SIZE);
         return String.valueOf(Hex.encodeHex(rawString));
 
-    }
-
-    public static PngFile parse(byte[] rawPng) throws PngFileException {
-        return parse(ByteBuffer.wrap(rawPng));
     }
 
     public static PngFile parse(ByteBuffer buffer) throws PngFileException {

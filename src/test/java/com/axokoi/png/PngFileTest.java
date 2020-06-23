@@ -4,10 +4,10 @@ For more information, visit www.axokoi.com or www.github.com/axokoi
 */
 package com.axokoi.png;
 
-import org.junit.Assert;
-import org.junit.Test;
 import com.axokoi.png.chunk.AllowedChunkTypes;
 import com.axokoi.png.chunk.Chunk;
+import org.junit.Assert;
+import org.junit.Test;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -23,14 +23,14 @@ public class PngFileTest {
     public void parse() throws PngFileException, IOException {
 
         byte[] rawPng = Files.readAllBytes(TEST_IMAGE_PATH);
-        PngFile pngFile = PngFile.parse(rawPng);
+        PngFile pngFile = PngFactory.parse(rawPng);
         Assert.assertArrayEquals(rawPng, pngFile.asBytes());
     }
 
     @Test
     public void contains() throws IOException, PngFileException {
         byte[] rawPng = Files.readAllBytes(TEST_IMAGE_PATH);
-        PngFile pngFile = PngFile.parse(rawPng);
+        PngFile pngFile = PngFactory.parse(rawPng);
         List<Chunk> chunks = pngFile.getChunks();
         List<AllowedChunkTypes> types = chunks.stream().map(Chunk::getType).collect(Collectors.toList());
 

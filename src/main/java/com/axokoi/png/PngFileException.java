@@ -8,4 +8,8 @@ public class PngFileException extends Exception {
     public PngFileException(String message, Throwable e) {
         super(message, e);
     }
+
+    public PngFileException(String message) {
+        super(message);
+    }
 }
