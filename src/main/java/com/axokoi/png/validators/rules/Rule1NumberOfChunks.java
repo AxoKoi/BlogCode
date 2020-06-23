@@ -18,7 +18,7 @@ public class Rule1NumberOfChunks implements Predicate<PngFile> {
     public boolean test(PngFile png) {
         List<Chunk> chunks = png.getChunks();
         boolean isIHDRCorrect = chunks.get(0).getType().equals(AllowedChunkTypes.IHDR);
-        boolean isIENDCorrect = chunks.get(chunks.size() - 1).getType().equals(AllowedChunkTypes.IHDR);
+        boolean isIENDCorrect = chunks.get(chunks.size() - 1).getType().equals(AllowedChunkTypes.IEND);
 
         boolean isIDATCorrect = chunks.stream()
                 .map(Chunk::getType)
