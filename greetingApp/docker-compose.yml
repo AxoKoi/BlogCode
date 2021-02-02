@@ -1,0 +1,12 @@
+version: '3'
+services:
+  tomcat-greeting:
+    container_name: tomcat-greeting
+    image: tomcat-greeting
+    ports:
+      - "8080:8080"
+  greeting-client:
+    container_name: greeting-client
+    image: greeting-client
+    ports:
+      - "8081:8081"
