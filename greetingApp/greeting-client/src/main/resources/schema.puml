@@ -1,0 +1,5 @@
+@startuml
+actor user
+user <--> (client greeting)
+(client greeting) <-> (greeting service)
+@enduml
