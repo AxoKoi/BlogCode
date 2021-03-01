@@ -1,12 +1,12 @@
 package com.axokoi.misc.post20210222;
 
-public class PrivateTriplet {
-   static final Integer staticValue = 5;
+public class PrivateQuartet {
+   private static final Integer staticValue = 5;
    private int x = -1;
    private final int y = -2;
    private final Integer z = 10;
 
-   private PrivateTriplet(int x) {
+   private PrivateQuartet(int x) {
       this.x = x;
    }
 
